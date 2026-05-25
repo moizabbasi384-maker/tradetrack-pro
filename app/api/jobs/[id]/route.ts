@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 
 type Ctx = { params: Promise<{ id: string }> };
 
-// PATCH — update job
 export async function PATCH(req: Request, ctx: Ctx) {
   const { id } = await ctx.params;
   const b = await req.json();
@@ -26,7 +25,6 @@ export async function PATCH(req: Request, ctx: Ctx) {
   return NextResponse.json(job[0]);
 }
 
-// DELETE — remove job
 export async function DELETE(_: Request, ctx: Ctx) {
   const { id } = await ctx.params;
   await sql`DELETE FROM jobs WHERE id = ${id}`;
